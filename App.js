@@ -1,21 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import HomeScreen from "./App/Screens/HomeScreen";
+import { AppLoading } from "expo";
+import * as Font from "expo-font";
+
+const getfonts = () => {
+  return Font.loadAsync({
+    "nunito-bold": require("./assets/font/Nunito-Bold.ttf"),
+    "nunito-semibold": require("./assets/font/Nunito-SemiBold.ttf"),
+  });
+};
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  const [fontloaded, setfontloaded] = useState(false);
+  if (fontloaded) {
+    return <HomeScreen />;
+  } else {
+    return (
+      <AppLoading startAsync={getfonts} onFinish={() => setfontloaded(true)} />
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const styles = StyleSheet.create({});
