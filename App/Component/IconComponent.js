@@ -1,16 +1,29 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function IconComponent() {
   return (
-    <MaterialCommunityIcons name="hamburger" size={40} style={styles.icon} />
+    <TouchableWithoutFeedback>
+      <Image
+        style={styles.image}
+        source={require("../../assets/cheese-burger.png")}
+      />
+    </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
-  icon: {
+  image: {
     marginLeft: 10,
-    color: "orangered",
+    
+    width: 40,
+    height: 40,
   },
 });

@@ -8,6 +8,7 @@ const getfonts = () => {
   return Font.loadAsync({
     "nunito-bold": require("./assets/font/Nunito-Bold.ttf"),
     "nunito-semibold": require("./assets/font/Nunito-SemiBold.ttf"),
+    "nunito-italic": require("./assets/font/Nunito-BoldItalic.ttf")
   });
 };
 

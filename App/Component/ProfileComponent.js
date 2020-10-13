@@ -1,16 +1,24 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 
 export default function ProfileComponent() {
-  return <View style={styles.box}></View>;
+  return (
+    <View style={styles.box}>
+      <Image
+        source={require("../../assets/153-1533974_emo-girl-vector-3d-cartoon-character-aka-ava.png")}
+        style={styles.image}
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-  box: {
-    height: 60,
-    width: 50,
-    backgroundColor: "blue",
-    marginRight: 12,
-    borderRadius: 15,
+  image: {
+    width: 40,
+    height: 40,
+    marginRight: 8,
+    overflow: "hidden",
+    borderRadius: 50,
+    alignContent: "center"
   },
 });
