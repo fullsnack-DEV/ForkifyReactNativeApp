@@ -1,5 +1,5 @@
 import React , {useState , useEffect} from "react";
-import { View, Text, StyleSheet , KeyboardAvoidingView } from "react-native";
+import { View, Text, StyleSheet ,  ScrollView } from "react-native";
 
 
 import Screen from "../Component/Screen";
@@ -13,10 +13,17 @@ import AppLogo from "../Component/Applogo"
 
 import useResult from "../Hooks/useResults"
 import { StatusBar } from "expo-status-bar";
+import ResultList from "../Component/ResultList";
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
   const [term , setTerm] = useState('');
   const [SearchAPI , result , errorMessage ] = useResult();
+
+  const Filterresultbyprice = (price) => {
+    return result.filter(result => {
+            return result.price === price;
+  });
+  };
  
 
 
@@ -31,7 +38,7 @@ export default function HomeScreen() {
  <AppLogo />
          
      <ProfileComponent />
-       
+         <StatusBar style="auto" style="dark" />
       </View>
       <Apptext style={styles.title}> Food & Restaurants in </Apptext>
       <Apptext style={styles.title1}> your city </Apptext>
@@ -39,17 +46,21 @@ export default function HomeScreen() {
         onTermsubmit={()=> SearchAPI(term)} />
         { errorMessage ? <Text> {errorMessage} </Text> : null}
      </View>
-     <StatusBar style="auto" style="dark" />
-      
+        <ScrollView> 
+     <ResultList results={Filterresultbyprice('$')} title="Today's Special" navigation={navigation} />
+       <ResultList results={Filterresultbyprice('$$')} title="Most Popular"  navigation={navigation} />
+         <ResultList results={Filterresultbyprice('$$')} title="Top Rated"  navigation={navigation}/>
+        </ScrollView>
     </Screen>
     
   );
 }
 const styles = StyleSheet.create({
 curve:{
-      backgroundColor: "#b2deec" ,
+      backgroundColor: "#2a3d66" ,
      borderBottomRightRadius: 100 ,
-     height: "60%",
+     height: "35%",
+     opacity: 1 ,
      shadowOffset:  {
       width: 5 , 
       height: 2
@@ -73,12 +84,14 @@ curve:{
     marginTop: 70,
     marginLeft: 12,
     fontFamily: "nunito-italic",
+    color: "#fff"
   },
   title1: {
     fontSize: 25,
     marginTop: 1,
     marginLeft: 12,
     fontFamily: "nunito-italic",
+    color: "#fff"
   },
   text: {
     fontSize: 25,
@@ -86,5 +99,10 @@ curve:{
     fontFamily: "nunito-semibold",
   },
   screen: {
-   }
+     backgroundColor: "#373a40",
+    }
 });
+
+
+
+//We are passing navigation prop to the resulrDetail component so that when user Click on the Image it will navigate the user to the  

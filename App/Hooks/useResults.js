@@ -10,7 +10,7 @@ export default ()=> {
         params: {
           limit: 20 , 
           term: searchTerm ,
-          location: 'san jose'
+          location: 'Silicon Valley'
         }
   
       });
@@ -22,7 +22,7 @@ export default ()=> {
   }
 
  useEffect(() => {
-         SearchAPI('Pasta')
+         SearchAPI('Pizza')
  }, [])
 
  return [SearchAPI , result , errorMessage]
